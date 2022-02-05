@@ -54,6 +54,7 @@ sudo mv ./serverless.yml ./tmp
 
 cd ./tmp
 echo "开始部署到腾讯云函数"
+ls
 result=$(sls deploy --debug)
 if [[ $result == *执行成功* ]]; then
 	echo -e "\033[1;32m部署成功 \033[0m"
