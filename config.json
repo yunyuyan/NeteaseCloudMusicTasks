@@ -42,7 +42,75 @@
                 "module": "pushPlus",
                 /* 是否启用pushplus微信推送 */
                 "enable": false,
-                /* pushplus的token */
+                /* pushplus的token */{
+
+    "version": "2.10",
+
+    "users": [
+
+        {
+
+            /* 填写手机号或邮箱 */
+
+            "username": "18837363821",
+
+            /* 如果使用非中国大陆的手机号登录则需填写 countrycode，其他情况都不用填写 */
+
+            "countrycode": "",
+
+            /* 填写密码或 32 位 md5 加密后的密码 */
+
+            "password": "wyy363821",
+
+            /* 填写任意国内IP，否则可能会有无法登录等问题出现，多个账号最好设置不同的IP */
+
+            /* 如果是在本地环境运行，则不需要填写 */
+
+            /* 可填写本机IP，查看方法为：百度搜索ip，填写显示的ip即可 */
+
+            "X-Real-IP": "223.104.108.38",
+
+            /* 是否运行该账号的任务 */
+
+            "enable": true
+
+            /* 若每个账号的任务设置不同,请在下方单独设置 */
+
+            /* ,"setting":{} */
+
+        } /*,{
+
+            "username":"",
+
+            "countrycode": "",
+
+            "password":"",
+
+            "X-Real-IP":"",
+
+            "enable": true
+
+        }*/
+
+        /* 多个账号删除上面的注释，以此类推 */
+
+    ],
+
+    "setting": {
+
+        /* 推送 */
+
+        "push": {
+
+            "serverChan": {
+
+                "module": "serverChan",
+
+                /* 是否启用server酱微信推送 */
+
+                "enable": false,
+
+       
                 "pushToken": "",
                 /* 消息模板:  markdown | html | txt | json */
                 "template": "markdown",
