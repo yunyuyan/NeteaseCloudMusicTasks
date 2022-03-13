@@ -103,6 +103,11 @@ class User(object):
                 return music
             login_resp = music.login(username, pwd, countrycode)
             if login_resp['code'] == 200:
+                level_resp = music.user_level()
+                if level_resp['code'] == 301:
+                    music.loginerror = str(login_resp['profile']['userId']) + ' 运行失败，请尝试删除云函数后重新部署'
+                    music.uid = 0
+                    return music
                 print('已通过账号密码登录')                
                 if self.runtime == 'tencent-scf':
                     music_cookie = ''
@@ -478,6 +483,8 @@ class User(object):
             time.sleep(sleep_time)
 
     def follow(self):
+        # 转载注明来源: https://github.com/chen310/NeteaseCloudMusicTasks
+        # 勿修改作者 ID
         author_uid = 347837981
         if self.uid == author_uid:
             return
@@ -612,7 +619,7 @@ class User(object):
                     rewardWorth = mission['rewardWorth']
 
                     if 'userStageTargetList' in mission:
-                        self.taskInfo(description, '任务已完成，暂时只能手动领取云豆')
+                        self.taskInfo(description, '任务已完成')
                         continue
 
                     reward_result = self.music.reward_obtain(
@@ -746,10 +753,11 @@ class User(object):
             self.sign()
 
         self.yunbei_task()
-        time.sleep(5)
+        time.sleep(3)
         self.get_yunbei()
 
         if self.userType == 4:
+            time.sleep(3)
             self.musician_task()
 
         if self.vipType == 11:
